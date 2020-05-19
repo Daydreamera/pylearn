@@ -7,6 +7,7 @@
 import os.path
 
 
+# 获取错误文件
 def readFile(file_path, error_file=[]):
     if not os.path.isdir(file_path):
         error_file.append(file_path)
@@ -15,7 +16,6 @@ def readFile(file_path, error_file=[]):
         for tempFile in fileList:
             readFile(file_path + '\\' + tempFile, error_file)
     return error_file
-
 
 # if __name__ == '__main__':
 #     print(readFile(r'C:\Users\Cong.Wang\Desktop\dir'))

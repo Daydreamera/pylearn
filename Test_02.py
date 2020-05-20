@@ -4,30 +4,15 @@
 # @Author : cong.wang
 # @File : Test_02.py 
 
-path = r'C:\Users\Cong.Wang\Desktop\dmx_01.csv'  # 大约5G
+def test(**args):
+    print(args['b'])
 
 
-def get_lines():
-    # with open(path, 'r', encoding='utf-8').readlines() as f:
-    f = open(path, 'r', encoding='utf-8')
-    file = f.readlines()
-    print('文件加载，一把读到内存中')
-    return file
+extra = {'city': 'Beijing', 'job': 'Engineer'}
 
 
-def get_lines_gene():
-    # with open(path, 'r', encoding='utf-8').readlines() as f:
-    f = open(path, 'r', encoding='utf-8')
-    file = f.readlines()
-    print('文件加载好了，现为生成器，读的过程加载内存')
-    for i in file:
-        yield i
+def person(kw):
+    print(kw['city'])
 
 
-if __name__ == '__main__':
-    # for i in get_lines():
-    #     print(i)  # MemoryError
-    print(get_lines())
-    # for i in get_lines_gene():
-    #     print(i)  # ok
-    print(get_lines_gene())
+person({'city': 'Beijing', 'job': 'Engineer'})

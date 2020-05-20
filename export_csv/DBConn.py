@@ -72,5 +72,4 @@ if __name__ == '__main__':
     行分隔符:#@DatayesRow@#
     列分隔符:#@DatayesCol@#
     '''
-    studf.to_csv(r'C:/Users/Cong.Wang/Desktop/stu.csv', index=False, line_terminator='#@DatayesRow@#',
-                 sep='#@DatayesCol@#')
+    studf.to_csv(r'C:/Users/Cong.Wang/Desktop/stu.csv', index=False)

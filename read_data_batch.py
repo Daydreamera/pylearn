@@ -23,6 +23,7 @@ def read_data():
 
 
 g = read_data()
-print(next(g))
-print('*' * 100)
-print(next(g))
+while True:
+    # 批次打印
+    print(next(g))
+    print('*' * 100)

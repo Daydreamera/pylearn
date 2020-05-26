@@ -8,7 +8,7 @@ import pandas as pd
 import os
 
 # define file path
-file_path = r'C:\Users\Cong.Wang\Desktop\news_company_score.csv'
+file_path = r'D:\qhwz\idx_factor.csv'
 
 # read txt file to string
 def read_file_as_str(file_path):

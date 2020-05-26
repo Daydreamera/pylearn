@@ -4,11 +4,11 @@
 # @Author : cong.wang
 # @File : DBConn.py
 
-import MySQLdb
+import pymysql
 import pymssql
 import pandas as pd
 from DBUtils.PooledDB import PooledDB
-import pylearn.export_csv.Utils as Utils
+import utils.Utils as Utils
 
 
 class Database:
@@ -31,12 +31,12 @@ class Database:
     # 创建连接池
     def _createConnPool(self):
         if self.port:
-            self.connPool = PooledDB(MySQLdb, mincached=3, maxcached=10, maxconnections=20, blocking=True,
-                                     host=self.host, user=self.user, passwd=self.password, db=self.database,
+            self.connPool = PooledDB(pymysql, mincached=3, maxcached=10, maxconnections=20, blocking=True,
+                                     host=self.host, user=self.user, password=self.password, database=self.database,
                                      port=self.port, charset='utf8')
         else:
             self.connPool = PooledDB(pymssql, mincached=3, maxcached=10, maxconnections=20, blocking=True,
-                                     host=self.host, user=self.user, passwd=self.password, db=self.database,
+                                     host=self.host, user=self.user, password=self.password, database=self.database,
                                      charset='utf8')
 
     # 获取连接
@@ -60,13 +60,14 @@ def readTable(tablename):
     my_cur = db.getConn().cursor()
     my_cur.execute(sql)
     result = my_cur.fetchall()
+
     return result
 
 
 if __name__ == '__main__':
     # print(readTable('stu'))
-    database = Database(Utils.readConfig('DBInfo.ini', 'Ubuntu', 'test'))
-    studf = pd.read_sql('select * from stu', database.getConn())
+    database = Database(Utils.readConfig('DBInfo.ini', 'db04', 'datayesdb'))
+    studf = pd.read_sql('select top 100 * from md_institution', database.getConn())
     print(studf)
     '''
     行分隔符:#@DatayesRow@#

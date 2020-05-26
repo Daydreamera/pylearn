@@ -37,4 +37,3 @@ def readConfig(path, option, db):
                 info[key] = cf.get(option, key)
         return info
 
-# print(readConfig('DBInfo.ini', 'Ubuntu', 'test'))

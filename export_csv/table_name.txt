@@ -1,0 +1,2 @@
+'ak_event'
+'ak_opinion'

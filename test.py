@@ -8,14 +8,15 @@ import pandas as pd
 import os
 
 # define file path
-file_path = r'D:\qhwz\idx_factor.csv'
+file_path = r'C:\Users\Cong.Wang\Desktop\ak_opinion.csv'
+
 
 # read txt file to string
 def read_file_as_str(file_path):
     if not os.path.isfile(file_path):
         raise TypeError(file_path + " does not exist")
 
-    all_the_text = open(file_path, encoding='utf-8').read()
+    all_the_text = open(file_path, encoding='utf8').read()
     print(type(all_the_text))
     return all_the_text
 
@@ -32,7 +33,8 @@ columns_name_list = result_str_list[0].split('#@DatayesCol@#')
 # begin transfor the results_list to dataframe
 # 删除第一行
 del result_str_list[0]
-for index, item in enumerate(result_str_list):
+# for index, item in enumerate(result_str_list):
+for index in range(len(result_str_list)):
     result_str_list[index] = result_str_list[index].split('#@DatayesCol@#')
 df = pd.DataFrame(result_str_list, columns=columns_name_list)
 

@@ -1,7 +1,7 @@
 #! usr/bin/python
 # -*- coding: utf-8 -*-
 # @Time : 2020/5/28 13:06
-# @File : test20200529.py
+# @File : read_csv.py
 
 import pandas as pd
 import sys

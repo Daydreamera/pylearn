@@ -57,7 +57,7 @@ class Database:
 def read_table_as_dataframe(file_path):
     database = Database(Utils.readConfig('DBInfo.ini', 'db04_bigdata'))
 
-    # 读入pandas再进行解析 效率高但有内存局限
+    # 获取表名 生成sql
     with open(r'table_name.txt', encoding='utf8') as f:
         tableNames = f.readlines()
 
@@ -66,9 +66,56 @@ def read_table_as_dataframe(file_path):
         print(tableName)
         sql = create_select_sql(tableName)
         print(sql)
+        # 读入pandas再进行解析 效率高但有内存局限
         df = pd.read_sql(sql[0].replace('TMSTAMP', 'cast(TMSTAMP as bigint) TMSTAMP'), database.getConn())
         file_name = file_path + '//' + tableName[1:-1] + '.csv'  # 生成文件名
         write_to_csv(file_name, df)
+
+
+# 按行读取数据库数据并写入csv文件
+def read_table_by_row(file_path, database):
+    # 获取数据库连接
+    database = Database(Utils.readConfig('DBInfo.ini', 'db04_' + database))
+    conn = database.getConn()
+    cur = conn.cursor()
+
+    # 获取表名 生成sql
+    with open(r'table_name.txt', encoding='utf8') as f:
+        tableNames = f.readlines()
+    for tableName in tableNames:
+        tableName = tableName.replace('\n', '').replace('\r', '')  # 过滤换行符
+
+        sql = create_select_sql(tableName)  # 调用方法生成查询sql语句
+        cur.execute(sql)  # 执行SQL
+        file_name = file_path + '//' + tableName[1:-1] + '.csv'  # 生成文件名
+        # 文件若存在 则删除
+        if os.path.exists(file_name):
+            os.remove(file_name)
+        # 新建目标文件
+        f = open(file_name, 'a', encoding='utf8')
+        # 写入列名
+        columns = []
+        for column in cur.description:
+            columns.append(column[0])
+        f.write('#@DatayesCol@#'.join(columns))
+        f.write('#@DatayesRow@#')
+
+        print(tableName + ' strat to write:', time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()))
+        # 按行抓取数据
+        data = cur.fetchone()
+        count = 0
+        while data is not None:
+            data_to_str = []
+            for i in data:
+                data_to_str.append(str(i))
+            f.write('#@DatayesCol@#'.join(data_to_str))
+            f.write('#@DatayesRow@#')
+            data = cur.fetchone()
+            count += 1
+        f.close()
+        print('The number of dataRow is :', count)
+        print(tableName + ' is write over:', time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()))
+        print()
 
 
 def write_to_csv(file_path, df):
@@ -91,8 +138,5 @@ def write_to_csv(file_path, df):
 
 
 if __name__ == '__main__':
-    read_table_as_dataframe(r'C:\Users\Cong.Wang\Desktop')
-    # da = Database(Utils.readConfig('DBInfo.ini', 'db04_datayesdb'))
-    # conn = da.getConn()
-
-    # print(conn)
+    # read_table_as_dataframe(r'C:\Users\Cong.Wang\Desktop')
+    read_table_by_row(r'D:\TTT', 'datayesdb')

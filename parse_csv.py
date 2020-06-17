@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 # @Time : 2020/5/14 17:29 
 # @Author : cong.wang
-# @File : test.py
+# @File : parse_csv.py
 
 import pandas as pd
 import os
 
 # define file path
-file_path = r'C:\Users\Cong.Wang\Desktop\ak_opinion.csv'
+file_path = r'D:\TTT\equ_factor_oc.csv'
 
 
 # read txt file to string

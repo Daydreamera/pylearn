@@ -7,7 +7,7 @@ import pandas as pd
 import sys
 import pymysql
 
-df = pd.read_csv(r'D:\GYAS\equ_factor_obos.csv',error_bad_lines=False,encoding='gb2312')
+df = pd.read_csv(r'C:\Users\Cong.Wang\Desktop\sssss.csv', error_bad_lines=False, encoding='gb2312')
 print(df)
 
 # conn = pymysql.connect('security03-dev.datayes.com', 'uts_sync', 'laV1Pa3sWE8jVoO2n', 'dydb_uts', 3309)

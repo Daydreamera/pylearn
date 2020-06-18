@@ -33,17 +33,18 @@ def create_select_sql(tableName):
     --select 'select ' + 'count(1)' + ' from ' + name_en +
     ' where ' + filter_cond + 
     case when
-    date_constr is null then '' else + ' and ' +  date_constr + ' >= ''20200101'' and '+ date_constr + ' < ''20200503''\' end
+    date_constr is null then '' else + ' and ' +  date_constr + ' >= ''20170601'' and '+ date_constr + ' < ''20200703''\' end
     from temp1
     '''.format(tableName)
 
-    sqls = []
+    # sqls = []
     conn = pymssql.connect('sh-dm-db04-r0.datayes.com', 'uts_sync', 'uts_sync', 'datayesdb')
     cur = conn.cursor()
-    number = cur.execute(sql)
+    cur.execute(sql)
     result = cur.fetchall()
-    for i in result:
-        for j in i:
-            sqls.append(j)
-            # print(j)
-    return sqls
+    # for i in result:
+    # for j in i:
+    #     sqls.append(j)
+    #     # print(j)
+    select_sql = result[0][0].replace('TMSTAMP', 'cast(TMSTAMP as bigint) TMSTAMP').replace('Close', '[Close]')
+    return select_sql

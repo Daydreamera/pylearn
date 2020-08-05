@@ -55,10 +55,14 @@ class Database:
 
 # 将数据读入DataFrame并调用写文件方法
 def read_table_as_dataframe(file_path):
+    """
+    :param file_path:要写入的地址
+    :return: None
+    """
     database = Database(Utils.readConfig('DBInfo.ini', 'db04_bigdata'))
 
     # 获取表名 生成sql
-    with open(r'table_name.txt', encoding='utf8') as f:
+    with open(r'table_name_1.txt', encoding='utf8') as f:
         tableNames = f.readlines()
 
     for tableName in tableNames:
@@ -74,6 +78,11 @@ def read_table_as_dataframe(file_path):
 
 # 按行读取数据库数据并写入csv文件
 def read_table_by_row(file_path, database):
+    """
+    :param file_path:要写入的文件地址
+    :param database: 导出库
+    :return: None
+    """
     # 获取数据库连接
     database = Database(Utils.readConfig('DBInfo.ini', 'db04_' + database))
     conn = database.getConn()
@@ -139,4 +148,4 @@ def write_to_csv(file_path, df):
 
 if __name__ == '__main__':
     # read_table_as_dataframe(r'C:\Users\Cong.Wang\Desktop')
-    read_table_by_row(r'D:\TTT', 'datayesdb')
+    read_table_by_row(r'D:\GYLC', 'bigdata')

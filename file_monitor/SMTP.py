@@ -11,19 +11,19 @@ from email.mime.text import MIMEText
 class SMTP():
     def __init__(self):
         # 服务器
-        self.host = 'smtp.file_monitor.com'
+        self.host = 'smtp.datayes.com'
         self.port = 25
         # 发送地址
-        self.sourceAddr = '1764052725@qq.com'
-        self.password = 'file_monitor@123'
+        self.sourceAddr = 'cong.wang@ddd.com'
+        self.password = ''
         # 目标地址
-        self.targetAddr = ['cong.wang@file_monitor.com']
+        self.targetAddr = ['cong.wang@datayes.com']
 
     #   @classmethod
     def sendMail(self, content):
         msg = MIMEText(content, 'plain', 'utf-8')
         # msg['From'] = 'PZ@qq.com'
-        msg['To'] = 'cong.wang@file_monitor.com'
+        msg['To'] = 'cong.wang@datayes.com'
         Subject = 'This is a test Email'
         msg['subject'] = Subject
 

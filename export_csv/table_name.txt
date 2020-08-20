@@ -1,1 +1,4 @@
-'ak_event'
+'mkt_equd'
+'mkt_themed'
+'mkt_inst_equd'
+'mkt_equd_ind'

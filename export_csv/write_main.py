@@ -106,8 +106,8 @@ def read_table_by_row(file_path, database):
         columns = []
         for column in cur.description:
             columns.append(column[0])
-        f.write('#@DatayesCol@#'.join(columns))
-        f.write('#@DatayesRow@#')
+        f.write(','.join(columns))
+        f.write('\n')
 
         print(tableName + ' strat to write:', time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()))
         # 按行抓取数据
@@ -117,8 +117,8 @@ def read_table_by_row(file_path, database):
             data_to_str = []
             for i in data:
                 data_to_str.append(str(i))
-            f.write('#@DatayesCol@#'.join(data_to_str))
-            f.write('#@DatayesRow@#')
+            f.write(','.join(data_to_str))
+            f.write('\n')
             data = cur.fetchone()
             count += 1
         f.close()
@@ -148,4 +148,4 @@ def write_to_csv(file_path, df):
 
 if __name__ == '__main__':
     # read_table_as_dataframe(r'C:\Users\Cong.Wang\Desktop')
-    read_table_by_row(r'D:\GYLC', 'bigdata')
+    read_table_by_row(r'D:\XFLH', 'datayesdb')

@@ -1,8 +1,3 @@
-#! usr/bin/python
-# -*- coding: utf-8 -*-
-# @Time : 2020/8/5 9:38 
-# @File : export_json.py
-
 # !/usr/bin/python
 # encoding:utf-8
 import pandas as pd
@@ -20,7 +15,7 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)  # Log等级总开关
 # 第二步，创建一个handler，用于写入日志文件
 rq = time.strftime('%Y%m%d%H%M', time.localtime(time.time()))
-log_path = '/root/logs/'
+log_path = 'D:\标准化数据'
 log_name = log_path + rq + '.log'
 logfile = log_name
 print(logfile)
@@ -32,18 +27,27 @@ fh.setFormatter(formatter)
 # 第四步，将logger添加到handler里面
 logger.addHandler(fh)
 
-data_path = '/51_datacopy/标准化试用数据/基础数据'
+data_path = 'D:\标准化数据'
 
 date_begin_str = '2017-01-01'
 
 break_date_str = '2019-12-31 23:59:59'
 break_date = datetime.datetime.strptime(break_date_str, '%Y-%m-%d %H:%M:%S')
 table_list = [
-    'fund_manager_return',
-    'fund_equ_chg',
-    'hk_shsz_detl',
-    'idx_weight'
+    'pfund_idx',
+    'pfund_mkt_idxd',
+    'eco_info_pro',
+    'announcement',
+    'announcement_profitability',
+    'announcement_abstract',
+    'star_fdmt_cf_lt',
+    'star_fdmt_is_new_q',
+    'star_fdmt_is_indu_q',
+    'star_fdmt_ind_lqd',
+    'star_fdmt_ef_new'
 ]
+
+
 
 con_pre = pymysql.connect(host='db-datayesdb-ro.wmcloud.com',
                           port=3313,
@@ -92,6 +96,7 @@ def export_do(data_apth_var, table_name_var, date_begin_var, date_end_var, expor
         print("export the file over")
     del df
     gc.collect()
+
 
 
 def main(table_name_var):

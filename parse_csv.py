@@ -8,7 +8,7 @@ import pandas as pd
 import os
 
 # define file path
-file_path = r'Z:\to_sudan\dxjj\vnews_content_v1.csv'
+file_path = r'\\10.20.202.51\Datacopy\to_sudan\ZSZQ20200817\hk_ccass_part.csv'
 
 
 # read txt file to string
@@ -16,7 +16,7 @@ def read_file_as_str(file_path):
     if not os.path.isfile(file_path):
         raise TypeError(file_path + " does not exist")
 
-    all_the_text = open(file_path, encoding='utf8').read(100000)
+    all_the_text = open(file_path, encoding='utf8').read()
     # print(type(all_the_text))
     return all_the_text
 

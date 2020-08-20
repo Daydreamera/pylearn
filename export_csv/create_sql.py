@@ -33,7 +33,7 @@ def create_select_sql(tableName):
     --select 'select ' + 'count(1)' + ' from ' + name_en +
     ' where ' + filter_cond + 
     case when
-    date_constr is null then '' else + ' and ' +  date_constr + ' >= ''20170701'' and '+ date_constr + ' < ''20200701''\' end
+    date_constr is null then '' else + ' and ' +  date_constr + ' >= ''20140101'' and '+ date_constr + ' < ''20200810''\' end
     from temp1
     '''.format(tableName)
 

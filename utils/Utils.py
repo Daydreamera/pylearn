@@ -8,8 +8,9 @@ import os.path
 import datetime
 import configparser
 
-
-# 获取昨天信息
+'''
+获取昨天信息
+'''
 def getYestoday():
     today = datetime.date.today()
     oneday = datetime.timedelta(1)
@@ -17,9 +18,30 @@ def getYestoday():
     return yestoday
 
 
-# 获取当天日期
+'''
+获取当天日期
+'''
 def getToday():
     return datetime.date.today()
+
+
+'''
+获取两个日期之间的日期
+(包含首尾日期)
+'''
+
+
+def dateRange(start_date_str, end_date_str, step=1):
+    '''
+    :param start_date_str: 开始日期字符串
+    :param end_date_str: 结束日期字符串
+    :param step: 间隔
+    :return:
+    '''
+    start_date = datetime.datetime.strptime(start_date_str, '%Y%m%d').date()
+    end_date = datetime.datetime.strptime(end_date_str, '%Y%m%d').date()
+    days = (end_date - start_date).days + 1
+    return [start_date + datetime.timedelta(i) for i in range(0, days, step)]
 
 
 # 读取数据库信息
@@ -36,4 +58,3 @@ def readConfig(path, option, db):
             else:
                 info[key] = cf.get(option, key)
         return info
-

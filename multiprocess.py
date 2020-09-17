@@ -27,10 +27,10 @@ def write_csv(tableName, string):
 
 
 if __name__ == '__main__':
-    p = Pool(1)
+    p = Pool(3)
     for table in tableList:
         p.apply_async(write_csv, args=(table, 'conn'))
-        print("111111111")
+        # print("111111111")
     print('waiting for all subprocesses done...')
     p.close()
     p.join()

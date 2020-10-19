@@ -1,11 +1,22 @@
 #! usr/bin/python
 # -*- coding: utf-8 -*-
 # @Time : 2020/5/14 10:18 
-# @Author : cong.wang
 # @File : SMTP.py
 
+import os
 import smtplib
 from email.mime.text import MIMEText
+
+
+# 获取错误文件
+def readFile(file_path, error_file=[]):
+    if not os.path.isdir(file_path):
+        error_file.append(file_path)
+    else:
+        fileList = os.listdir(file_path)
+        for tempFile in fileList:
+            readFile(file_path + '\\' + tempFile, error_file)
+    return error_file
 
 
 class SMTP():
@@ -37,3 +48,8 @@ class SMTP():
             print('发送成功')
         except smtplib.SMTPException:
             print('faild to send Email,Please checked the MailInformation!')
+
+
+if __name__ == '__main__':
+    smtpObj = SMTP()
+    smtpObj.sendMail('\n'.join(readFile(r'C:\Users\Cong.Wang\Desktop\dir')))

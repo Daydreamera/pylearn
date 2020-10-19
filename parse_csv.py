@@ -8,7 +8,7 @@ import pandas as pd
 import os
 
 # define file path
-file_path = r'\\10.20.202.51\Datacopy\to_sudan\ZSZQ20200817\hk_ccass_part.csv'
+file_path = r'Z:\to_jiaojiao\MSTZ20200917\social_themes_guba.csv'
 
 
 # read txt file to string
@@ -16,7 +16,7 @@ def read_file_as_str(file_path):
     if not os.path.isfile(file_path):
         raise TypeError(file_path + " does not exist")
 
-    all_the_text = open(file_path, encoding='utf8').read()
+    all_the_text = open(file_path, encoding='utf8').read(1000000)
     # print(type(all_the_text))
     return all_the_text
 
@@ -39,4 +39,4 @@ for index in range(len(result_str_list)):
 df = pd.DataFrame(result_str_list, columns=columns_name_list)
 
 # print the dataframe
-print(df.__len__())
+print(df)

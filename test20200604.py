@@ -4,8 +4,8 @@
 # @Author : cong.wang
 # @File : test20200604.py 
 
-import datetime
 import time
+import datetime
 
 begindate = datetime.date(1996, 9, 1)
 enddate = datetime.date.today()

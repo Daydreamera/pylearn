@@ -37,8 +37,3 @@ def readConfig(path, option):
                 info[key] = cf.get(option, key)
         return info
 
-
-# if __name__ == '__main__':
-#     s = readConfig('DBInfo.ini', 'db04_datayesdb')
-#     print(s)
-#     print(s.__len__())

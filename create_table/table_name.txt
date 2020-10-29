@@ -1,0 +1,7 @@
+mkt_idxd
+mkt_idxw
+mkt_idxm
+mkt_idxq
+mkt_idxs
+mkt_idxa
+mkt_ivx

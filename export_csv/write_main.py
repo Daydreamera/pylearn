@@ -11,7 +11,7 @@ import pymssql
 import pandas as pd
 from DBUtils.PooledDB import PooledDB
 from pylearn.export_csv.create_sql import create_select_sql
-import Utils
+import export_csv.myutils as myutils
 
 
 class Database:
@@ -59,7 +59,7 @@ def read_table_as_dataframe(file_path):
     :param file_path:要写入的地址
     :return: None
     """
-    database = Database(Utils.readConfig('DBInfo.ini', 'db04_bigdata'))
+    database = Database(myutils.readConfig('DBInfo.ini', 'db04_bigdata'))
 
     # 获取表名 生成sql
     with open(r'table_name_1.txt', encoding='utf8') as f:
@@ -84,7 +84,7 @@ def read_table_by_row(file_path, database):
     :return: None
     """
     # 获取数据库连接
-    database = Database(Utils.readConfig('DBInfo.ini', 'db04_' + database))
+    database = Database(myutils.readConfig('DBInfo.ini', 'db04_' + database))
     conn = database.getConn()
     cur = conn.cursor()
 

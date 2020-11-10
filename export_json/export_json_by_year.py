@@ -34,17 +34,7 @@ date_begin_str = '2017-01-01'
 break_date_str = '2019-12-31 23:59:59'
 break_date = datetime.datetime.strptime(break_date_str, '%Y-%m-%d %H:%M:%S')
 table_list = [
-    'pfund_idx',
-    'pfund_mkt_idxd',
-    'eco_info_pro',
-    'announcement',
-    'announcement_profitability',
-    'announcement_abstract',
-    'star_fdmt_cf_lt',
-    'star_fdmt_is_new_q',
-    'star_fdmt_is_indu_q',
-    'star_fdmt_ind_lqd',
-    'star_fdmt_ef_new'
+    'pfund_reg_flow_amac'
 ]
 
 

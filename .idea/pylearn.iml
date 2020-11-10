@@ -5,10 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/firstPro" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/utils" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.6 (pyworkspace)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.5 (pylearn)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-  </component>
-  <component name="TestRunnerService">
-    <option name="PROJECT_TEST_RUNNER" value="Unittests" />
   </component>
 </module>

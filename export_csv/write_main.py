@@ -1,7 +1,5 @@
 #! usr/bin/python
 # -*- coding: utf-8 -*-
-# @Time : 2020/5/19 10:22 
-# @Author : cong.wang
 # @File : write_main.py
 
 import os
@@ -10,7 +8,7 @@ import pymysql
 import pymssql
 import pandas as pd
 from DBUtils.PooledDB import PooledDB
-from pylearn.export_csv.create_sql import create_select_sql
+from export_csv.create_sql import create_select_sql
 import export_csv.myutils as myutils
 
 
@@ -47,44 +45,23 @@ class Database:
         try:
             self.conn = self.connPool.connection()
         except ConnectionRefusedError:
-            print('数据库连接超时!')
+            print('数据库连接拒绝!')
         except ConnectionError:
             print('数据库连接异常！')
         return self.conn
 
 
-# 将数据读入DataFrame并调用写文件方法
-def read_table_as_dataframe(file_path):
-    """
-    :param file_path:要写入的地址
-    :return: None
-    """
-    database = Database(myutils.readConfig('DBInfo.ini', 'db04_bigdata'))
-
-    # 获取表名 生成sql
-    with open(r'table_name_1.txt', encoding='utf8') as f:
-        tableNames = f.readlines()
-
-    for tableName in tableNames:
-        tableName = tableName.replace('\n', '').replace('\r', '')  # 过滤换行符
-        print(tableName)
-        sql = create_select_sql(tableName)
-        print(sql)
-        # 读入pandas再进行解析 效率高但有内存局限
-        df = pd.read_sql(sql[0].replace('TMSTAMP', 'cast(TMSTAMP as bigint) TMSTAMP'), database.getConn())
-        file_name = file_path + '//' + tableName[1:-1] + '.csv'  # 生成文件名
-        write_to_csv(file_name, df)
-
-
 # 按行读取数据库数据并写入csv文件
-def read_table_by_row(file_path, database):
+def read_table_by_row(file_path, database, begin_date, end_date):
     """
     :param file_path:要写入的文件地址
-    :param database: 导出库
+    :param database:导出库
+    :begin_date:开始时间
+    :end_date:结束时间
     :return: None
     """
     # 获取数据库连接
-    database = Database(myutils.readConfig('DBInfo.ini', 'db04_' + database))
+    database = Database(myutils.readConfig('DBInfo.ini', 'db_' + database))
     conn = database.getConn()
     cur = conn.cursor()
 
@@ -94,7 +71,8 @@ def read_table_by_row(file_path, database):
     for tableName in tableNames:
         tableName = tableName.replace('\n', '').replace('\r', '')  # 过滤换行符
 
-        sql = create_select_sql(tableName)  # 调用方法生成查询sql语句
+        sql = create_select_sql(tableName, begin_date, end_date)  # 调用方法生成查询sql语句
+        print(sql)
         cur.execute(sql)  # 执行SQL
         file_name = file_path + '//' + tableName[1:-1] + '.csv'  # 生成文件名
         # 文件若存在 则删除
@@ -106,8 +84,8 @@ def read_table_by_row(file_path, database):
         columns = []
         for column in cur.description:
             columns.append(column[0])
-        f.write(','.join(columns))
-        f.write('\n')
+        f.write('#@DatayesCol@#'.join(columns))
+        f.write('#@DatayesRow@#')
 
         print(tableName + ' strat to write:', time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()))
         # 按行抓取数据
@@ -117,35 +95,14 @@ def read_table_by_row(file_path, database):
             data_to_str = []
             for i in data:
                 data_to_str.append(str(i))
-            f.write(','.join(data_to_str))
-            f.write('\n')
+            f.write('#@DatayesCol@#'.join(data_to_str))
+            f.write('#@DatayesRow@#')
             data = cur.fetchone()
             count += 1
         f.close()
         print('The number of dataRow is :', count)
-        print(tableName + ' is write over:', time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()))
-        print()
-
-
-def write_to_csv(file_path, df):
-    '''
-    行分隔符:#@DatayesRow@#
-    列分隔符:#@DatayesCol@#
-    '''
-    if os.path.exists(file_path):
-        os.remove(file_path)
-    print('begin to write:', time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()))
-    with open(file_path, 'a', encoding='utf8') as f:
-        for column in df.columns.values[:-1]:
-            f.write(column + '#@DatayesCol@#')
-        f.write(df.columns.values[-1] + '#@DatayesRow@#')
-        for i in range(df.shape[0]):
-            for data in df.iloc[i, :-1]:
-                f.write(str(data) + '#@DatayesCol@#')
-            f.write(str(df.iloc[i, -1]) + '#@DatayesRow@#')
-    print('write over:', time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()))
+        print(tableName + ' is write over:', time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()),end='\n')
 
 
 if __name__ == '__main__':
-    # read_table_as_dataframe(r'C:\Users\Cong.Wang\Desktop')
-    read_table_by_row(r'D:\XFLH', 'datayesdb')
+    read_table_by_row(r'/51_datacopy/to_jiaojiao/GFZQ', 'datayesdb','20160101','20201001')

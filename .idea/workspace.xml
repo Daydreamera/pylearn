@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="32cfdf5d-5c2d-495c-8ef7-9fd8154d6b77" name="Default Changelist" comment="Standard_DataPacket(CSV)">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/pylearn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pylearn.iml" afterDir="false" />
+    <list default="true" id="32cfdf5d-5c2d-495c-8ef7-9fd8154d6b77" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/export_csv/parse_csv.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/export_csv/DBInfo.ini" beforeDir="false" afterPath="$PROJECT_DIR$/export_csv/DBInfo.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/export_csv/create_sql.py" beforeDir="false" afterPath="$PROJECT_DIR$/export_csv/create_sql.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/export_csv/table_name.txt" beforeDir="false" afterPath="$PROJECT_DIR$/export_csv/table_name.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/export_csv/write_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/export_csv/write_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/export_json/export_json_by_year.py" beforeDir="false" afterPath="$PROJECT_DIR$/export_json/export_json_by_year.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ttttttttttttt.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/parse_csv.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -225,7 +219,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604991808443</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Standard_DataPacket(CSV)">
+      <created>1604992186360</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1604992186360</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -242,11 +243,11 @@
       <screen x="45" y="24" width="1571" height="829" />
     </state>
     <state x="506" y="24" key="#write_main/45.24.1571.829@45.24.1571.829" timestamp="1603969544965" />
-    <state x="463" y="24" key="CommitChangelistDialog2" timestamp="1604992117824">
+    <state x="463" y="24" key="CommitChangelistDialog2" timestamp="1604992182769">
       <screen x="45" y="24" width="1875" height="1056" />
     </state>
     <state x="395" y="24" key="CommitChangelistDialog2/45.24.1571.829@45.24.1571.829" timestamp="1603965017659" />
-    <state x="463" y="24" key="CommitChangelistDialog2/45.24.1875.1056@45.24.1875.1056" timestamp="1604992117824" />
+    <state x="463" y="24" key="CommitChangelistDialog2/45.24.1875.1056@45.24.1875.1056" timestamp="1604992182769" />
     <state x="145" y="96" width="1675" height="884" key="DiffContextDialog" timestamp="1602657769936">
       <screen x="45" y="24" width="1875" height="1056" />
     </state>
@@ -314,11 +315,11 @@
     </state>
     <state x="354" y="29" key="SettingsEditor/45.24.1571.829@45.24.1571.829" timestamp="1603969563887" />
     <state x="414" y="30" key="SettingsEditor/45.24.1875.1056@45.24.1875.1056" timestamp="1600132794409" />
-    <state x="505" y="199" key="Vcs.Push.Dialog.v2" timestamp="1604991824931">
+    <state x="505" y="199" key="Vcs.Push.Dialog.v2" timestamp="1604992205804">
       <screen x="45" y="24" width="1875" height="1056" />
     </state>
     <state x="430" y="161" key="Vcs.Push.Dialog.v2/45.24.1571.829@45.24.1571.829" timestamp="1603965057519" />
-    <state x="505" y="199" key="Vcs.Push.Dialog.v2/45.24.1875.1056@45.24.1875.1056" timestamp="1604991824931" />
+    <state x="505" y="199" key="Vcs.Push.Dialog.v2/45.24.1875.1056@45.24.1875.1056" timestamp="1604992205804" />
     <state width="937" height="547" key="XDebugger.FullValuePopup" timestamp="1604990281113">
       <screen x="45" y="24" width="1875" height="1056" />
     </state>
@@ -354,11 +355,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/parse_csv.py</url>
-          <line>41</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/data_check/check_main.py</url>
           <line>291</line>
           <option name="timeStamp" value="13" />
@@ -382,6 +378,11 @@
           <url>file://$PROJECT_DIR$/datayes_csv_standard_export/check_main.py</url>
           <line>114</line>
           <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/export_csv/parse_csv.py</url>
+          <line>35</line>
+          <option name="timeStamp" value="44" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

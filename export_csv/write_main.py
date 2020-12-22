@@ -84,8 +84,8 @@ def read_table_by_row(file_path, database, begin_date, end_date):
         columns = []
         for column in cur.description:
             columns.append(column[0])
-        f.write('#@DatayesCol@#'.join(columns))
-        f.write('#@DatayesRow@#')
+        f.write('#@DyC@#'.join(columns))
+        f.write('#@DyR@#')
 
         print(tableName + ' strat to write:', time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()))
         # 按行抓取数据
@@ -95,8 +95,8 @@ def read_table_by_row(file_path, database, begin_date, end_date):
             data_to_str = []
             for i in data:
                 data_to_str.append(str(i))
-            f.write('#@DatayesCol@#'.join(data_to_str))
-            f.write('#@DatayesRow@#')
+            f.write('#@DyC@#'.join(data_to_str))
+            f.write('#@DyR@#')
             data = cur.fetchone()
             count += 1
         f.close()
@@ -105,4 +105,4 @@ def read_table_by_row(file_path, database, begin_date, end_date):
 
 
 if __name__ == '__main__':
-    read_table_by_row(r'/51_datacopy/to_jiaojiao/GFZQ', 'datayesdb','20160101','20201001')
+    read_table_by_row(r'/51_datacopy/to_jiaojiao/ZKDSJ', 'linglei','20201001','20210701')

@@ -27,7 +27,7 @@ class DB_Base:
     # 创建连接池
     def _create_connpool(self):
         if self.port:
-            self.connpPool = PooledDB(pymysql, mincached=3, maxcached=10, maxconnections=20, blocking=True,
+            self.connPool = PooledDB(pymysql, mincached=3, maxcached=10, maxconnections=20, blocking=True,
                                      host=self.host, user=self.user, password=self.password, database=self.database,
                                      port=self.port, charset='utf8')
         else:

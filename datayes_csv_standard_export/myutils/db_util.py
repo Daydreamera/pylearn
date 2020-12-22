@@ -92,6 +92,7 @@ def get_export_sql(table_name, begin_date, end_date):
         from temp1
         '''.format(table_name=table_name, begin_date=begin_date, end_date=end_date)
     sql_df = pd.read_sql(sql, conn)
+
     return sql_df
 
 
@@ -155,10 +156,10 @@ def get_pub_columns(table_name):
     '''.format(table_name)
     df = pd.read_sql(sql,conn)
     return list(df['SHORT_NAME_EN'])
-
-if __name__ == '__main__':
-    # print(str(get_table_catalog('pfund_nav_newest').iloc[0, 2]))mkt_limit
-    # df = get_export_sql('sys_code', '20190101', '20200101')
-    # df = get_db_count('news_company_score', '20190101', '20200101')
-    df = get_pub_columns('md_institution')
-    print(df)
+#
+# if __name__ == '__main__':
+#     # print(str(get_table_catalog('pfund_nav_newest').iloc[0, 2]))mkt_limit
+#     df = get_export_sql('idx_factor', '20190101', '20200101')
+#     # df = get_db_count('news_company_score', '20190101', '20200101')
+#     # df = get_pub_columns('md_institution')
+#     print(df)

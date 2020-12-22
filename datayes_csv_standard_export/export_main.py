@@ -59,9 +59,10 @@ def write_file(table_name, begin_date, end_date):
     while True:
         if begin_date < end_date:
             date_condition_column = \
-            db_util.get_export_sql(table, begin_date=begin_year + '0101', end_date=end_year + '0101').iloc[
-                0, 0]  # 时间过滤条件
+                db_util.get_export_sql(table, begin_date=begin_year + '0101', end_date=end_year + '0101').iloc[
+                    0, 0]  # 时间过滤条件
             export_sql = db_util.get_export_sql(table_name, begin_date, str(int(begin_date) + 1)).iloc[0, 1]
+            export_sql = export_sql.replace('GROUP', '[GROUP]').replace('Close', '[Close]')
             cur.execute(export_sql)
             file_name = get_file_name(table_name, root_path, begin_date, bool(date_condition_column))
             # 文件若存在 则删除

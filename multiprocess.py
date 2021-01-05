@@ -17,11 +17,11 @@ tableList = ['sys_code',
 
 
 def write_csv(tableName, string):
-    print(string)
+    # print(string)
     conn = pymssql.connect('sh-dm-db04-r0.datayes.com', 'uts_sync', 'uts_sync', 'datayesdb', charset='utf8')
     df = pd.read_sql('select top 100000 * from {}'.format(tableName), con=conn)
     print('{} write begin'.format(tableName))
-    df.to_csv(r'D:\test\{}.csv'.format(tableName), sep=',')
+    df.to_csv(r'/data/other/export_csv/{}.csv'.format(tableName), encoding='utf-8', index=False)
     print('{} write over'.format(tableName))
     # conn.close()
 

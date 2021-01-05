@@ -31,6 +31,6 @@ def get_df(file_path):
     return pd.DataFrame(result_str_list, columns=columns_name_list)
 
 if __name__ == '__main__':
-    file_path = r'/51_datacopy/to_jiaojiao/BHZQ/hk_shsz_detl_07.csv'
+    file_path = r'/51_datacopy/to_xiaoqian/md_institution.csv'
     df = get_df(file_path)
     print(df)

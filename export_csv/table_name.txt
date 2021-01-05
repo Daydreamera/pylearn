@@ -1,5 +1,3 @@
-'industry_recruitment_stats'
-'listcompany_recruitment_stats'
-'city_recruitment_stats'
-'recruitment_all_stats'
-'recruitment_active_url_num'
+'sys_code'
+'repo'
+'bond'

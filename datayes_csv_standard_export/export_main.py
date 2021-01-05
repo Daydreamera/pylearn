@@ -12,7 +12,9 @@ import datayes_csv_standard_export.dao.db_base as db_base
 root_path = '/51_datacopy/Standard_DataPacket(CSV)'
 begin_year = '2017'
 end_year = '2020'
-db = db_base.DB_Base(db_util.read_dbconfig('./source/DBInfo.ini', 'db_datayesdb'))
+ROW_SEP = '#@DyR@#'
+COL_SEP = '#@DyC@#'
+db = db_base.DB_Base(db_util.read_dbconfig('./source/DBInfo.ini', 'db_research_rpt'))
 
 
 # 获取表清单
@@ -72,8 +74,8 @@ def write_file(table_name, begin_date, end_date):
                 columns = []
                 for column in cur.description:
                     columns.append(column[0])
-                f.write('#@DyC@#'.join(columns))
-                f.write('#@DyR@#')
+                f.write(COL_SEP.join(columns))
+                f.write(ROW_SEP)
                 print(os.path.basename(file_name) + ' strat to write:',
                       time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()))
                 # 批次抓取数据
@@ -84,11 +86,11 @@ def write_file(table_name, begin_date, end_date):
                         data_list = []
                         for i in data:
                             data_list.append(str(i))
-                        data_str = '#@DyC@#'.join(data_list)
+                        data_str = COL_SEP.join(data_list)
                         data_batch_list.append(data_str)
-                    data_batch_str = '#@DyR@#'.join(data_batch_list)
+                    data_batch_str = ROW_SEP.join(data_batch_list)
                     f.write(data_batch_str)
-                    f.write('#@DyR@#')
+                    f.write(ROW_SEP)
                     data_batch = cur.fetchmany(10000)
                 count = cur.rownumber
                 print('The number of dataRow is :', count)
